@@ -1,0 +1,38 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.modeLabel {
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.4rem 1.2rem;
+  border-radius: 2rem;
+}
+
+.work {
+  background-color: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+}
+
+.break {
+  background-color: rgba(34, 197, 94, 0.15);
+  color: #22c55e;
+}
+
+.time {
+  font-size: 6rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.sessions {
+  font-size: 0.95rem;
+  color: #888;
+}

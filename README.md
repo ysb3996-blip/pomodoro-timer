@@ -1,73 +1,103 @@
-# React + TypeScript + Vite
+# Pomodoro Timer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+ポモドーロ・テクニックに基づいた集中タイマーアプリです。
+React + TypeScript + Vite で構築されています。
 
-Currently, two official plugins are available:
+## ポモドーロ・テクニックとは
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1980年代にフランチェスコ・シリロが考案した時間管理術です。
+**25分の作業** と **5分の休憩** を1セットとして繰り返すことで、集中力を維持しながら効率的に作業を進められます。
 
-## React Compiler
+## 機能
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **タイマー表示** - 残り時間を大きく見やすく表示
+- **作業/休憩の自動切り替え** - 25分の作業が終わると自動的に5分の休憩に移行
+- **操作ボタン** - Start / Pause / Reset のシンプルな操作
+- **セッション数カウント** - 完了した作業セッションの回数を表示
+- **ブラウザ通知** - タイマー完了時にデスクトップ通知でお知らせ
+- **背景色の切り替え** - 作業中は濃紺、休憩中は深緑に変化し、モードが視覚的にわかる
 
-## Expanding the ESLint configuration
+## 技術スタック
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+| 技術 | バージョン | 用途 |
+|------|-----------|------|
+| React | 19.x | UI ライブラリ |
+| TypeScript | 5.9 | 型安全な開発 |
+| Vite | 7.x | ビルドツール・開発サーバー |
+| CSS Modules | - | スコープ付きスタイリング |
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## セットアップ
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### 必要環境
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- Node.js 20 以上
+- npm
+
+### インストール
+
+```bash
+git clone https://github.com/ysb3996-blip/pomodoro-timer.git
+cd pomodoro-timer
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 開発サーバーの起動
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run dev
 ```
+
+ブラウザで http://localhost:5173 を開くとアプリが表示されます。
+
+### ビルド
+
+```bash
+npm run build
+```
+
+`dist/` ディレクトリに本番用ファイルが出力されます。
+
+### ビルド結果のプレビュー
+
+```bash
+npm run preview
+```
+
+### Lint
+
+```bash
+npm run lint
+```
+
+## プロジェクト構成
+
+```
+src/
+├── App.tsx                  # メインコンポーネント
+├── App.css                  # アプリ全体のスタイル
+├── index.css                # グローバルスタイル
+├── main.tsx                 # エントリーポイント
+├── components/
+│   ├── Timer.tsx            # タイマー表示コンポーネント
+│   ├── Timer.module.css
+│   ├── Controls.tsx         # 操作ボタンコンポーネント
+│   └── Controls.module.css
+└── hooks/
+    └── useTimer.ts          # タイマーロジック（カスタムフック）
+```
+
+## GitHub 設定
+
+このリポジトリには以下の GitHub 設定が含まれています。
+
+| ファイル | 内容 |
+|---------|------|
+| `.github/ISSUE_TEMPLATE/bug_report.yml` | バグ報告用のフォームテンプレート |
+| `.github/ISSUE_TEMPLATE/feature_request.yml` | 機能要望用のフォームテンプレート |
+| `.github/PULL_REQUEST_TEMPLATE.md` | PR 作成時のテンプレート |
+| `.github/workflows/ci.yml` | CI（型チェック・Lint・ビルド） |
+| `.github/dependabot.yml` | npm / GitHub Actions の依存関係自動更新 |
+
+## ライセンス
+
+MIT
